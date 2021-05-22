@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" >
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,800);
+body{
+  font-family: 'Open Sans';
+}
+header{
+  background-color: #062e6d;
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
+  color: white;
+  padding-top: 2%
+  padding:0;
+  margin :0;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #062e6d;
+    color: white;
+    text-align: center;
+}
+
+.flexbox-container{
+  display: flex;
+  width: 100%;
+}
+table{
+  border: 1px solid black;
+  width:80%;
+  background-color:#062e6d;
+  color:#062e6d;
+  text-align: left;
+  table-layout: fixed;
+
+
+}
+th, td {
+  border: 1px solid black;
+  width:50%;
+  background-color:#CBF4FE;
+  color:#062e6d;
+  padding: 15px;
+  text-align: left;
+  font-size: 20px;
+  word-wrap: break-word;
+
+
+}
+.trending {
+  font-size: 30px;
+  color: #db9e02;
+  padding-left: 2%;
+}
+.words {
+  font-size: 20px;
+}
+.tab{
+  padding-left: 12%
+}
+
+input[type="search"]{
+    width:80%;
+    font-size:36px;
+    color:#888;
+    border-radius: 15px;
+    border-color: #062e6d;
+    margin: 0 1rem;
+    /*changing background color from white*/
+    background-color:#CBF4FE;
+    text-align:center;
+  }
+  .main{
+    order: 1;
+    flex: 5;
+    background-color: white;
+  }
+
+</style>
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="{{ url_for('static', filename='angular.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='calAnswersModule.js') }}"></script>
+
+</head>
+
+<body>
+
+  <div id = "main">
+
+    <header>Cal Data Search
+      <form action="" method=post enctype=multipart/form-data>
+        <input type=file name=file >
+        <input type=submit value=Upload>
+
+
+
+      </form>
+    </header>
+  </div>
+  <div ng-app="calAnswers" ng-controller="myCtrl">
+    <div class="flexbox-container">
+      <article class="main">
+
+        <form class="searchbox" id = "textinput" action="" style="margin-left: 120px; margin-top: 50px;">
+
+          <!--This will set our input to search Entry and call function in calAnswersModule.js and output will be in records what is the economics department count-->
+          <input type="search" placeholder="search.." ng-model="searchEntry" ng-change="searchEntryChanged()" >
+          <!--<ul class="suggestions">-->
+            <!--<li ng-repeat="r in records track by $index">-->
+              <!--<a href="#"> {{ '{{ r }}' }} </a>-->
+              <!--</li>-->
+              <!--</ul>-->
+            </form>
+            <!--<p style="margin-left: 120px"> this is the sample sentence '{{ r }}'</p>-->
+            <div class = "tab" ng-repeat = "r in records" >
+              <div ng-repeat="(key,val) in r" >
+                <table class = "pure-table">
+                  <br>
+                  <br>
+                  <tr>
+                    <th>Query</th>
+                    <th>Result</th>
+                  </tr>
+                  <tr>
+                    <td>{{ '{{ key }}' }}</td>
+                    <td>{{'{{ val }}'}}</td>
+                  </tr>
+
+                </div>
+              </div>
+            </table>
+<!--
+            <ul class="suggestions_second">
+              <li ng-repeat="r in records[0]" style="margin-left: 400px;">
+                {{ '{{ r }}' }}
+              </li>
+                <li ng-repeat="r in records[0] track by $index" style="margin-left: 400px;">
+                    <strong>
+                      <center>=
+                      {{ '{{ r }}' }}
+                      </center>
+                    </strong>
+                </li>
+              </ul>
+            -->
+          </article>
+          <br>
+          <div class="trending" style="">
+            <br>
+            Keywords
+            <div class="words">
+              <p><i>department</p>
+                <p>undergraduate</p></i>
+              </div>
+            </div>
+          <div class="footer">
+            <p>2018</p>
+          </div>
+
+          </div>
+        </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+      </body>
+      </html>
